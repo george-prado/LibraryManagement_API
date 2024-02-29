@@ -3,9 +3,17 @@ package com.george.library.models;
 import lombok.Getter;
 import lombok.Setter;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import java.time.LocalDateTime;
 
-public class BookModel {
+@Entity
+public class Book {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter @Getter private long id;
     @Setter @Getter private String name;
     @Setter @Getter private String slug;
@@ -15,9 +23,10 @@ public class BookModel {
     @Setter @Getter private LocalDateTime arrivedAt;
     @Setter @Getter private LocalDateTime borrowedAt;
 
+    public Book() {
+    }
 
-    public BookModel(long id, String name, String slug, String author, String holder, boolean available, LocalDateTime arrivedAt) {
-        this.id = id;
+    public Book(String name, String slug, String author, String holder, boolean available, LocalDateTime arrivedAt) {
         this.name = name;
         this.slug = slug;
         this.author = author;
